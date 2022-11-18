@@ -8,6 +8,8 @@ require(forcats)
 require(survival)
 ## need jtools for the summ function
 require(jtools)
+require(broom.mixed)
+require(ggstance)
 
 ## load the dataset
 dat <- readRDS("publicData.rds")
@@ -39,6 +41,8 @@ summ(fit.e,confint=1,exp=1)
 fit.er <- glm(outcome~repi+ygroup+sex + agroup+offset(log(dur)),data=spdat,family=poisson)
 ##summary(fit.e)
 summ(fit.er,confint=1,exp=1)
+plot_summs(fit.e,exp=TRUE)
+plot_summs(fit.er,exp=TRUE)
 
 ###############################################################################
 ## check that the results hold if we run the analysis in the sexes separtely
